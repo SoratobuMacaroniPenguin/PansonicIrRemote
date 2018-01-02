@@ -1,135 +1,114 @@
 /*
- * PansonicSendDemo
- *
- * Thank's Ken Shiffiff
+ * IRremote: PansonicSendDemo - demonstrates sending IR codes with IRsend
+ * An IR LED must be connected to Arduino PWM pin 3.
+ * Version 0.1 July, 2009
+ * Copyright 2009 Ken Shirriff
+ * http://arcfn.com
+ * Panasonic protocol added by Kristian Lauszus (Thanks to zenwheel and other people at the original blog post)
+ * 
+ * 
  */
 #include <IRremote.h>
  
 #define PanasonicAddress      0x555A     // Panasonic address (Pre data) 
 #define PanasonicPower        0xF148688B  // Panasonic Power button
-#define Panasonic1            0xF148724C  // Panasonic Power button
-#define Panasonic2            0xF148F244  // Panasonic Power button
-#define Panasonic3            0xF1480A43  // Panasonic Power button
-#define Panasonic4            0xF1488A4B  // Panasonic Power button
-#define Panasonic5            0xF1484A47  // Panasonic Power button
-#define Panasonic6            0xF148CA4F  // Panasonic Power button
-#define Panasonic7            0xF1482A41  // Panasonic Power button
-#define Panasonic8            0xF148AA49  // Panasonic Power button
-#define Panasonic9            0xF1486A45  // Panasonic Power button
-#define Panasonic10           0xF148EA4D  // Panasonic Power button
-#define Panasonic11           0xF1481A42  // Panasonic Power button
-#define Panasonic12           0xF1486A45  // Panasonic Power button
-#define PanasonicSchedule     0xF148064F  // Panasonic Power button
-#define PanasonicRight        0xF1481B8F  // Panasonic Power button
-#define PanasonicLeft         0xF148EB80  // Panasonic Power button
-#define PanasonicDecision     0xF1484A8B  // Panasonic Power button
+#define Panasonic1            0xF148724C  // Panasonic Channel 1
+#define Panasonic2            0xF148F244  // Panasonic Channel 2
+#define Panasonic3            0xF1480A43  // Panasonic Channel 3
+#define Panasonic4            0xF1488A4B  // Panasonic Channel 4
+#define Panasonic5            0xF1484A47  // Panasonic Channel 5
+#define Panasonic6            0xF148CA4F  // Panasonic Channel 6
+#define Panasonic7            0xF1482A41  // Panasonic Channel 7
+#define Panasonic8            0xF148AA49  // Panasonic Channel 8
+#define Panasonic9            0xF1486A45  // Panasonic Channel 9
+#define Panasonic10           0xF148EA4D  // Panasonic Channel 10
+#define Panasonic11           0xF1481A42  // Panasonic Channel 11
+#define Panasonic12           0xF1486A45  // Panasonic Channel 12
+#define PanasonicSchedule     0xF148064F  // Panasonic Schedule button
+#define PanasonicRight        0xF1481B8F  // Panasonic Cursole Right
+#define PanasonicLeft         0xF148EB80  // Panasonic Cursole Left
+#define PanasonicDecision     0xF1484A8B  // Panasonic Cursole Enter
 
 
 IRsend irsend;
+
+unsigned long code;
 
 void setup()
 {
   Serial.begin(9800);
 }
 
-void loop()
-{
-  if (Serial.available() > 0 ){
+void loop() {
+  if (Serial.available() > 0){
     switch (Serial.read()){
-      case 'p':
-        irsend.sendPanasonic(PanasonicAddress,PanasonicPower); // This should turn your TV on and off
-        delay(10);
-        irsend.sendPanasonic(PanasonicAddress,PanasonicPower); // This should turn your TV on and off
-      break;
       case '1':
-        irsend.sendPanasonic(PanasonicAddress,Panasonic1); // This should turn your TV on and off
-        delay(10);
-        irsend.sendPanasonic(PanasonicAddress,Panasonic1); // This should turn your TV on and off
+        code = Panasonic1;
       break;
       case '2':
-        irsend.sendPanasonic(PanasonicAddress,Panasonic2); // This should turn your TV on and off
-        delay(10);
-        irsend.sendPanasonic(PanasonicAddress,Panasonic2); // This should turn your TV on and off
+        code = Panasonic2;
       break;
       case '3':
-        irsend.sendPanasonic(PanasonicAddress,Panasonic3); // This should turn your TV on and off
-        delay(10);
-        irsend.sendPanasonic(PanasonicAddress,Panasonic3); // This should turn your TV on and off
+        code = Panasonic3;
       break;
       case '4':
-        irsend.sendPanasonic(PanasonicAddress,Panasonic4); // This should turn your TV on and off
-        delay(10);
-        irsend.sendPanasonic(PanasonicAddress,Panasonic4); // This should turn your TV on and off
+        code = Panasonic4;
       break;
       case '5':
-        irsend.sendPanasonic(PanasonicAddress,Panasonic5); // This should turn your TV on and off
-        delay(10);
-        irsend.sendPanasonic(PanasonicAddress,Panasonic5); // This should turn your TV on and off
+        code = Panasonic5;
       break;
       case '6':
-        irsend.sendPanasonic(PanasonicAddress,Panasonic6); // This should turn your TV on and off
-        delay(10);
-        irsend.sendPanasonic(PanasonicAddress,Panasonic6); // This should turn your TV on and off
+        code = Panasonic6;
       break;
       case '7':
-        irsend.sendPanasonic(PanasonicAddress,Panasonic7); // This should turn your TV on and off
-        delay(10);
-        irsend.sendPanasonic(PanasonicAddress,Panasonic7); // This should turn your TV on and off
+        code = Panasonic7;
       break;
       case '8':
-        irsend.sendPanasonic(PanasonicAddress,Panasonic8); // This should turn your TV on and off
-        delay(10);
-        irsend.sendPanasonic(PanasonicAddress,Panasonic8); // This should turn your TV on and off
+        code = Panasonic8;
       break;
       case '9':
-        irsend.sendPanasonic(PanasonicAddress,Panasonic9); // This should turn your TV on and off
-        delay(10);
-        irsend.sendPanasonic(PanasonicAddress,Panasonic9); // This should turn your TV on and off
+        code = Panasonic9;
       break;
-      case '10':
-        irsend.sendPanasonic(PanasonicAddress,Panasonic10); // This should turn your TV on and off
-        delay(10);
-        irsend.sendPanasonic(PanasonicAddress,Panasonic10); // This should turn your TV on and off
+      case 'a':
+        code = Panasonic10;
       break;
-      case '11':
-        irsend.sendPanasonic(PanasonicAddress,Panasonic11); // This should turn your TV on and off
-        delay(10);
-        irsend.sendPanasonic(PanasonicAddress,Panasonic11); // This should turn your TV on and off
+      case 'b':
+        code = Panasonic11;
       break;
-      case '12':
-        irsend.sendPanasonic(PanasonicAddress,Panasonic12); // This should turn your TV on and off
-        delay(10);
-        irsend.sendPanasonic(PanasonicAddress,Panasonic12); // This should turn your TV on and off
-      break;
-      case 's':
-        irsend.sendPanasonic(PanasonicAddress,PanasonicSchedule); // This should turn your TV on and off
-        delay(10);
-        irsend.sendPanasonic(PanasonicAddress,PanasonicSchedule); // This should turn your TV on and off
-      break;
-      case 'r':
-        irsend.sendPanasonic(PanasonicAddress,PanasonicRight); // This should turn your TV on and off
-        delay(10);
-        irsend.sendPanasonic(PanasonicAddress,PanasonicRight); // This should turn your TV on and off
-      break;
-      case 'l':
-        irsend.sendPanasonic(PanasonicAddress,PanasonicLeft); // This should turn your TV on and off
-        delay(10);
-        irsend.sendPanasonic(PanasonicAddress,PanasonicLeft); // This should turn your TV on and off
+      case 'c':
+        code = Panasonic12;
       break;
       case 'd':
-        irsend.sendPanasonic(PanasonicAddress,PanasonicDecision); // This should turn your TV on and off
-        delay(10);
-        irsend.sendPanasonic(PanasonicAddress,PanasonicDecision); // This should turn your TV on and off
+        code = PanasonicPower;
+      break;
+      case 'e':
+        code = PanasonicDecision;
+      break;
+      case 'l':
+        code = PanasonicLeft;
+      break;
+      case 'p':
+        code = PanasonicPower;
+      break;
+      case 'r':
+        code = PanasonicRight;
+      break;
+      case 's':
+        code = PanasonicSchedule;
+      break;
+      case 'u':
+        code = PanasonicPower;
       break;
       default:
       {
       }
     }
+    irsend.sendPanasonic(PanasonicAddress,code); // This should turn your TV on and off
+    delay(10);
+    irsend.sendPanasonic(PanasonicAddress,code); // This should turn your TV on and off
+    Serial.print(code);
   }
 
-//  irsend.sendPanasonic(PanasonicAddress,code); // This should turn your TV on and off
-//  delay(10);
-//  irsend.sendPanasonic(PanasonicAddress,code); // This should turn your TV on and off
   
   delay(500);
 }
