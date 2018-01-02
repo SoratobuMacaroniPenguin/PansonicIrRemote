@@ -1,12 +1,7 @@
 /*
- * IRremote: PansonicSendDemo - demonstrates sending IR codes with IRsend
- * An IR LED must be connected to Arduino PWM pin 3.
- * Version 0.1 July, 2009
- * Copyright 2009 Ken Shirriff
- * http://arcfn.com
- * Panasonic protocol added by Kristian Lauszus (Thanks to zenwheel and other people at the original blog post)
- * 
- * 
+ * PansonicSendDemo
+ *
+ * Thank's Ken Shiffiff
  */
 #include <IRremote.h>
  
