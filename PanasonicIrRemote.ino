@@ -1,10 +1,10 @@
 /*
- * PanasonicIrRemote Ver0.0
- * Made by SoratobuMacaroniPenguin 
+ * PanasonicIrRemote Ver0.1 Jan, 2018
+ * Copyright 2018 SoratobuMacaroniPenguin 
+ * http://blog.goo.ne.jp/soratobu_macaronipenguin
  *
- *
- * 
- * Thank's Ken Shiffiff
+ * based on the IRremote by Ken Shirriff
+ * Thanks Ken Shirriff
  */
 #include <IRremote.h>
  
@@ -21,11 +21,15 @@
 #define Panasonic9            0xF1486A45  // Panasonic Channel 9
 #define Panasonic10           0xF148EA4D  // Panasonic Channel 10
 #define Panasonic11           0xF1481A42  // Panasonic Channel 11
-#define Panasonic12           0xF1486A45  // Panasonic Channel 12
+#define Panasonic12           0xF1489A4A  // Panasonic Channel 12
 #define PanasonicSchedule     0xF148064F  // Panasonic Schedule button
-#define PanasonicRight        0xF1481B8F  // Panasonic Cursole Right
-#define PanasonicLeft         0xF148EB80  // Panasonic Cursole Left
-#define PanasonicDecision     0xF1484A8B  // Panasonic Cursole Enter
+#define PanasonicCurRight     0xF1481B8F  // Panasonic Cursole Right
+#define PanasonicCurLeft      0xF148EB80  // Panasonic Cursole Left
+#define PanasonicCurUp        0xF148EA81  // Panasonic Cursole Up
+#define PanasonicCurDown      0xF1480481  // Panasonic Cursole Down
+#define PanasonicEnter        0xF1484A8B  // Panasonic Cursole Enter
+#define PanasonicVolDown      0xF148A887  // Panasonic Volume Down
+#define PanasonicVolUp        0xF148288F  // Panasonic Volume Up
 
 
 IRsend irsend;
@@ -77,25 +81,31 @@ void loop() {
         code = Panasonic12;
       break;
       case 'd':
-        code = PanasonicPower;
+        code = PanasonicVolDown;
       break;
       case 'e':
-        code = PanasonicDecision;
+        code = PanasonicEnter;
+      break;
+      case 'f':
+        code = PanasonicCurDown;
       break;
       case 'l':
-        code = PanasonicLeft;
+        code = PanasonicCurLeft;
       break;
       case 'p':
         code = PanasonicPower;
       break;
       case 'r':
-        code = PanasonicRight;
+        code = PanasonicCurRight;
       break;
       case 's':
         code = PanasonicSchedule;
       break;
       case 'u':
-        code = PanasonicPower;
+        code = PanasonicVolUp;
+      break;
+      case 'v':
+        code = PanasonicCurUp;
       break;
       default:
       {
